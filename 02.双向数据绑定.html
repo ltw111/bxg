@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" v-model="name">
+    <h2 v-html="name"></h2>
+</body>
+</html>
+<script>
+    var obj1={
+        name:"hahaha"
+    }
+    var obj2={}
+
+    Object.defineProperty(obj2,"name",{
+        get (){
+            return obj1.name
+        },
+        set (data){
+            obj1.name=data
+            document.querySelector("[v-model='name']").value=obj1.name
+            document.querySelector("[v-html='name']").innerHTML=obj1.name
+            
+        }
+    })
+
+    
+    document.querySelector("[v-model='name']").oninput=function (e){
+        obj1.name=e.target.value
+        document.querySelector("[v-html='name']").innerHTML=e.target.value
+    }
+
+</script>
